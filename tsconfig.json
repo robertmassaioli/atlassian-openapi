@@ -1,0 +1,27 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "target": "es5",
+    "allowSyntheticDefaultImports": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./src/stories/**/*",
+    "./src/*.test.ts",
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ]
+}

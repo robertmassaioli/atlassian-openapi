@@ -1,0 +1,46 @@
+{
+  "name": "atlassian-openapi",
+  "version": "1.0.0",
+  "description": "This is a package that lets you deal with the Atlassian flavour of the OpenAPI 3.0 specification.",
+  "keywords": [
+    "atlassian",
+    "openapi",
+    "swagger"
+  ],
+  "author": "Robert Massaioli",
+  "license": "MIT",
+  "main": "lib/index",
+  "typings": "lib/index",
+  "scripts": {
+    "test": "jest",
+    "gen": "json2ts swagger-v3.json --unreachableDefinitions > src/swagger.ts",
+    "lint": "tslint 'src/**/*.ts*'",
+    "build": "tsc --project ."
+  },
+  "dependencies": {
+    "jsonpointer": "^4.0.1",
+    "urijs": "^1.18.10"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.0",
+    "@types/urijs": "^1.15.33",
+    "jest": "^24.8.0",
+    "json-schema-to-typescript": "^7.1.0",
+    "tslint": "^5.10.0",
+    "typescript": "^3.1.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
