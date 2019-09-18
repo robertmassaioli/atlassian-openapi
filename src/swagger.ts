@@ -810,4 +810,4 @@ export namespace Swagger {
     openIdConnectUrl: string;
     description?: string;
   }
-  }
+}
