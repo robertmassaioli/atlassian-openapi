@@ -1,6 +1,5 @@
 import { Swagger } from './swagger';
 import * as URI from 'urijs';
-import { isUndefined } from 'util';
 
 export type PathAndOperation = {
     baseUrl: string;
@@ -22,7 +21,7 @@ export type OperationGroupings = {
 };
 
 function findBestServer(swagger: Swagger.SwaggerV3): Swagger.Server | undefined {
-    if (isUndefined(swagger.servers)) {
+    if (swagger.servers === undefined) {
         return undefined;
     }
 
@@ -32,14 +31,14 @@ function findBestServer(swagger: Swagger.SwaggerV3): Swagger.Server | undefined 
     }
 
     const httpsServer = validServers.find(s => s.url.startsWith('https://'));
-    return isUndefined(httpsServer) ? validServers[0] : httpsServer;
+    return httpsServer === undefined ? validServers[0] : httpsServer;
 }
 
 function getServerUrlWithDefault(swagger: Swagger.SwaggerV3): string {
     const bestServer = findBestServer(swagger);
 
     // Default value
-    if (isUndefined(bestServer)) {
+    if (bestServer === undefined) {
         return 'https://your-domain.atlassian.net';
     }
 
@@ -89,7 +88,7 @@ function extractFromPathItem(
     path: string,
     pathItem: Swagger.PathItem,
     security: Swagger.SecurityRequirement[] | undefined): PathAndOperation[] {
-    const pathItemParameters = isUndefined(pathItem.parameters) ? [] : pathItem.parameters;
+    const pathItemParameters = pathItem.parameters === undefined ? [] : pathItem.parameters;
     const toPO = (method: Swagger.Method, operation: Swagger.Operation): PathAndOperation => {
         return {
             baseUrl,
@@ -207,7 +206,7 @@ export const radV1GroupingStrategy: GroupingStrategy = swagger => {
     Object.keys(swagger.paths).forEach(path => {
         const topLevelPathGroup = generateTitleFromPath(path);
         const newPathItems = extractFromPathItem(baseUrl, path, swagger.paths[path], swagger.security);
-        if (isUndefined(groupings[topLevelPathGroup])) {
+        if (groupings[topLevelPathGroup] === undefined) {
             groupings[topLevelPathGroup] = {
                 title: topLevelPathGroup,
                 operations: newPathItems
