@@ -1,5 +1,4 @@
 {
-  "extends": ["tslint-react"],
   "linterOptions": {
     "exclude": [
       "*.json",
