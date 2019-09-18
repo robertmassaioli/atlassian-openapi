@@ -13,7 +13,6 @@
   "typings": "lib/index",
   "scripts": {
     "test": "jest",
-    "gen": "json2ts swagger-v3.json --unreachableDefinitions > src/swagger.ts",
     "lint": "tslint 'src/**/*.ts*'",
     "build": "tsc --project ."
   },
@@ -26,7 +25,7 @@
     "@types/urijs": "^1.15.33",
     "husky": "^3.0.5",
     "jest": "^24.8.0",
-    "json-schema-to-typescript": "^7.1.0",
+    "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "tslint": "^5.10.0",
     "typescript": "^3.1.1"
