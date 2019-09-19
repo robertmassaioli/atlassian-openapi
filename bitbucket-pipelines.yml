@@ -7,10 +7,22 @@ image: node:12
 
 pipelines:
   default:
-    - step:
+    - step: &testStep
+        name: Test
         caches:
           - node
         script: # Modify the commands below to build your repository.
           - npm install
           - npm run build
           - npm test
+  branches:
+    master:
+      - step: *testStep
+      - step:
+          name: Publish
+          caches:
+            - node
+          script:
+            - npm version "1.0.${BITBUCKET_BUILD_NUMBER}" -m "%s [skip ci]"
+            - npm install
+            - npm publish --unsafe-perm
