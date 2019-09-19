@@ -23,7 +23,7 @@ pipelines:
           caches:
             - node
           script:
-            - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
             - npm version "1.0.${BITBUCKET_BUILD_NUMBER}" -m "%s [skip ci]"
             - npm install
+            - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
             - npm publish --unsafe-perm
