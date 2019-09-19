@@ -23,7 +23,8 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "lint": "tslint 'src/**/*.ts*'",
-    "build": "tsc --project ."
+    "build": "tsc --project .",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "jsonpointer": "^4.0.1",
