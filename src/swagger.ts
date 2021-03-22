@@ -221,6 +221,15 @@ export namespace Swagger {
     parameters?: ParameterOrRef[];
   }
   /**
+   * New OAuth2 scopes
+   * @see https://hello.atlassian.net/wiki/spaces/redfox/pages/1046875420/RFC+OAuth+scopes+deprecation+in+Jira+-+DAC
+   */
+  export interface OAuth2Scopes {
+    deprecated: boolean;
+    scopes: string[];
+    documentation?: string;
+  }
+  /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "Operation".
    */
@@ -247,6 +256,7 @@ export namespace Swagger {
     servers?: Server[];
     'x-experimental'?: boolean;
     'x-atlassian-connect-scope'?: string;
+    'x-atlassian-oauth2-scopes'?: OAuth2Scopes[];
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
