@@ -1,6 +1,6 @@
 {
   "name": "atlassian-openapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a package that lets you deal with the Atlassian flavour of the OpenAPI 3.0 specification.",
   "repository": {
     "type" : "git",

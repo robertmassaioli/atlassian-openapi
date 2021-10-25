@@ -229,6 +229,20 @@ export namespace Swagger {
     scopes: string[];
     documentation?: string;
   }
+
+  /**
+   * OAuth2 scopes with scope's state
+   * @see https://hello.atlassian.net/wiki/spaces/redfox/pages/1304762888/OpenAPI+-+DAC+contract
+   */
+  export interface OAuth2ScopesWithState {
+    state: OAuth2ScopesState;
+    scopes: string[];
+    scheme?: string;
+    documentation?: string;
+  }
+
+  export type OAuth2ScopesState = 'Current' | 'Deprecated' | 'Beta';
+
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "Operation".
@@ -256,7 +270,7 @@ export namespace Swagger {
     servers?: Server[];
     'x-experimental'?: boolean;
     'x-atlassian-connect-scope'?: string;
-    'x-atlassian-oauth2-scopes'?: OAuth2Scopes[];
+    'x-atlassian-oauth2-scopes'?: OAuth2Scopes[] | OAuth2ScopesWithState[];
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
