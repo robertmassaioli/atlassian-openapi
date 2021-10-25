@@ -417,4 +417,20 @@ export namespace SwaggerTypeChecks {
     ) {
     return p.in === 'path';
   }
+  // tslint:disable-next-line:max-line-length
+  export function isOAuth2ScopesArray(o: NonNullable<Swagger.Operation['x-atlassian-oauth2-scopes']>): o is Array<Swagger.OAuth2Scopes> {
+    return o.every(isOAuth2Scopes);
+  }
+  // tslint:disable-next-line:max-line-length
+  export function isOAuth2ScopesWithStateArray(o: NonNullable<Swagger.Operation['x-atlassian-oauth2-scopes']>): o is Array<Swagger.OAuth2ScopesWithState> {
+    return o.every(isOAuth2ScopesWithState);
+  }
+  export function isOAuth2Scopes(o: Swagger.OAuth2Scopes | Swagger.OAuth2ScopesWithState): o is Swagger.OAuth2Scopes {
+    return 'deprecated' in o;
+  }
+  // tslint:disable-next-line:max-line-length
+  export function isOAuth2ScopesWithState(o: Swagger.OAuth2Scopes | Swagger.OAuth2ScopesWithState): o is Swagger.OAuth2ScopesWithState {
+    return 'state' in o;
+  }
+
 }
