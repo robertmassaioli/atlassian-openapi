@@ -1,10 +1,10 @@
 {
   "name": "atlassian-openapi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is a package that lets you deal with the Atlassian flavour of the OpenAPI 3.0 specification.",
   "repository": {
-    "type" : "git",
-    "url" : "git@bitbucket.org:echo_rm/atlassian-openapi.git"
+    "type": "git",
+    "url": "git@bitbucket.org:echo_rm/atlassian-openapi.git"
   },
   "keywords": [
     "atlassian",
