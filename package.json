@@ -24,7 +24,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "jsonpointer": "^4.0.1",
+    "jsonpointer": "^5.0.0",
     "urijs": "^1.18.10"
   },
   "devDependencies": {
