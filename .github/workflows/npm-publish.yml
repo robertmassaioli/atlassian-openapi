@@ -15,6 +15,7 @@ jobs:
       with:
         node-version: 14
         registry-url: 'https://registry.npmjs.org'
+    - run: npm install
     - run: npm run lint # tslint 'src/**/*.ts*'
     - run: npm run build # tsc --project .
     - run: npm run test # jest
