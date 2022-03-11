@@ -1,0 +1,26 @@
+name: npm-publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  npm-publish:
+    name: npm-publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@master
+    - name: Set up Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: 14
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm run lint # tslint 'src/**/*.ts*'
+    - run: npm run build # tsc --project .
+    - run: npm run test # jest
+    - name: Publish the package to NPM registry
+      run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc && cp .npmrc packages/atlassian-openapi && npm publish
+      env: # More info about the environment variables in the README
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
+
