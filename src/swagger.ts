@@ -244,6 +244,14 @@ export namespace Swagger {
   export type OAuth2ScopesState = 'Current' | 'Deprecated' | 'Beta';
 
   /**
+   * Data Security Policy for App Access
+   * @see https://hello.atlassian.net/wiki/spaces/ECOTRUST/pages/3047963369/DACI+-+Swagger+OpenAPI+custom+property+for+app+access
+   */
+  export interface DataSecurityPolicy {
+    'app-access-rule-exempt': boolean;
+  }
+
+  /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "Operation".
    */
@@ -271,6 +279,7 @@ export namespace Swagger {
     'x-experimental'?: boolean;
     'x-atlassian-connect-scope'?: string;
     'x-atlassian-oauth2-scopes'?: OAuth2Scopes[] | OAuth2ScopesWithState[];
+    'x-atlassian-data-security-policy'?: DataSecurityPolicy[];
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
