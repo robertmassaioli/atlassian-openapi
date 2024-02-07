@@ -97,7 +97,7 @@ export namespace SwaggerTypeChecks {
 
   // tslint:disable-next-line:no-any
   export function isReference(s: any): s is S.Reference {
-    return typeof s === 'object' && '$ref' in s;
+    return typeof s === 'object' && s !== null && '$ref' in s;
   }
 
   const schemaStandardKeys: Set<string> = new Set([
