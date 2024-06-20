@@ -299,7 +299,7 @@ export namespace Swagger {
     example?: any;
   }
 
-  export type SchemaType = "array" | "boolean" | "integer" | "number" | "object" | "string";
+  export type SchemaType = "array" | "boolean" | "integer" | "number" | "object" | "string" | "null";
 
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
