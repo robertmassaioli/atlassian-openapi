@@ -277,6 +277,7 @@ export namespace Swagger {
     security?: SecurityRequirement[];
     servers?: Server[];
     'x-experimental'?: boolean;
+    'x-preview'?: boolean;
     'x-atlassian-connect-scope'?: string;
     'x-atlassian-oauth2-scopes'?: OAuth2Scopes[] | OAuth2ScopesWithState[];
     'x-atlassian-data-security-policy'?: DataSecurityPolicy[];
