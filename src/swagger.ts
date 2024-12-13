@@ -17,7 +17,9 @@ export namespace Swagger {
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "ParameterWithSchema".
    */
-  export type ParameterWithSchema = ParameterWithSchemaWithExample | ParameterWithSchemaWithExamples;
+  export type ParameterWithSchema =
+    | ParameterWithSchemaWithExample
+    | ParameterWithSchemaWithExamples;
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "ParameterWithSchemaWithExample".
@@ -40,7 +42,9 @@ export namespace Swagger {
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "ParameterWithContent".
    */
-  export type ParameterWithContent = ParameterWithContentInPath | ParameterWithContentNotInPath;
+  export type ParameterWithContent =
+    | ParameterWithContentInPath
+    | ParameterWithContentNotInPath;
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "MediaType".
@@ -55,7 +59,9 @@ export namespace Swagger {
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "HeaderWithSchema".
    */
-  export type HeaderWithSchema = HeaderWithSchemaWithExample | HeaderWithSchemaWithExamples;
+  export type HeaderWithSchema =
+    | HeaderWithSchemaWithExample
+    | HeaderWithSchemaWithExamples;
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "Link".
@@ -74,7 +80,9 @@ export namespace Swagger {
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
    * via the `definition` "HTTPSecurityScheme".
    */
-  export type HttpSecurityScheme = NonBearerHttpSecurityScheme | BearerHttpSecurityScheme;
+  export type HttpSecurityScheme =
+    | NonBearerHttpSecurityScheme
+    | BearerHttpSecurityScheme;
 
   export interface SwaggerV3 {
     openapi: string;
@@ -90,7 +98,7 @@ export namespace Swagger {
     tags?: Tag[];
     paths: Paths;
     components?: Components;
-    'x-atlassian-narrative'?: AtlassianNarrative;
+    "x-atlassian-narrative"?: AtlassianNarrative;
   }
 
   export interface AtlassianNarrative {
@@ -197,7 +205,15 @@ export namespace Swagger {
   export interface Paths {
     [path: string]: PathItem;
   }
-  export type Method = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
+  export type Method =
+    | "get"
+    | "put"
+    | "post"
+    | "delete"
+    | "options"
+    | "head"
+    | "patch"
+    | "trace";
   /**
    * This interface was referenced by `Paths`'s JSON-Schema definition
    * via the `patternProperty` "^\/".
@@ -241,15 +257,41 @@ export namespace Swagger {
     documentation?: string;
   }
 
-  export type OAuth2ScopesState = 'Current' | 'Deprecated' | 'Beta';
+  export type OAuth2ScopesState = "Current" | "Deprecated" | "Beta";
 
   /**
    * Data Security Policy for App Access
    * @see https://hello.atlassian.net/wiki/spaces/ECOTRUST/pages/3047963369/DACI+-+Swagger+OpenAPI+custom+property+for+app+access
    */
   export interface DataSecurityPolicy {
-    'app-access-rule-exempt': boolean;
+    "app-access-rule-exempt": boolean;
   }
+
+  /**
+   * custom extension required to render scope title in dac based on scope type
+   *
+   * api-token - Authentication with API Tokens
+   *
+   * repository-access-token - Authentication with repository access token
+   *
+   * project-access-token - Authentication with project access token
+   *
+   * workspace-access-token - Authentication with workspace access token
+   *
+   * identity-oauth2 - Authentication with platform OAuth2
+   *
+   * forge-oauth2 - Authentication with platform OAuth2 for Forge apps
+   *
+   * @see https://hello.atlassian.net/wiki/spaces/BB/pages/4484370299/Add+API+Token+scopes+to+bitbucket+documentation
+   */
+
+  export type AuthTypes =
+    | "api-token"
+    | "repository-access-token"
+    | "project-access-token"
+    | "workspace-access-token"
+    | "identity-oauth2"
+    | "forge-oauth2";
 
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -276,11 +318,12 @@ export namespace Swagger {
      */
     security?: SecurityRequirement[];
     servers?: Server[];
-    'x-experimental'?: boolean;
-    'x-preview'?: boolean;
-    'x-atlassian-connect-scope'?: string;
-    'x-atlassian-oauth2-scopes'?: OAuth2Scopes[] | OAuth2ScopesWithState[];
-    'x-atlassian-data-security-policy'?: DataSecurityPolicy[];
+    "x-experimental"?: boolean;
+    "x-preview"?: boolean;
+    "x-atlassian-connect-scope"?: string;
+    "x-atlassian-oauth2-scopes"?: OAuth2Scopes[] | OAuth2ScopesWithState[];
+    "x-atlassian-data-security-policy"?: DataSecurityPolicy[];
+    "x-atlassian-auth-type"?: AuthTypes[];
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -300,7 +343,13 @@ export namespace Swagger {
     example?: any;
   }
 
-  export type SchemaType = "array" | "boolean" | "integer" | "number" | "object" | "string";
+  export type SchemaType =
+    | "array"
+    | "boolean"
+    | "integer"
+    | "number"
+    | "object"
+    | "string";
 
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -391,7 +440,7 @@ export namespace Swagger {
     allowReserved?: boolean;
     schema: Schema | Reference;
     example?: any;
-    'x-showInExample'?: boolean;
+    "x-showInExample"?: boolean;
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -474,7 +523,7 @@ export namespace Swagger {
     examples: {
       [k: string]: Example | Reference;
     };
-    'x-showInExample'?: boolean;
+    "x-showInExample"?: boolean;
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -625,7 +674,7 @@ export namespace Swagger {
     content: {
       [k: string]: MediaType;
     };
-    'x-showInExample'?: boolean;
+    "x-showInExample"?: boolean;
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -736,7 +785,7 @@ export namespace Swagger {
     name: string;
     in: "header" | "query" | "cookie";
     description?: string;
-    'x-bearer-type'?: XBearerType;
+    "x-bearer-type"?: XBearerType;
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
@@ -756,17 +805,17 @@ export namespace Swagger {
     bearerFormat?: string;
     type: "http";
     description?: string;
-    'x-bearer-type'?: XBearerType;
+    "x-bearer-type"?: XBearerType;
   }
 
   export type XBearerType = XBearerTypeAsap | XBearerTypeSLAUTH;
 
   export interface XBearerTypeAsap {
-    type: 'asap';
+    type: "asap";
   }
 
   export interface XBearerTypeSLAUTH {
-    type: 'slauth';
+    type: "slauth";
     audience: string;
     defaultSlauthEnvironment?: string;
   }
