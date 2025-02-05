@@ -323,7 +323,7 @@ export namespace Swagger {
     "x-atlassian-connect-scope"?: string;
     "x-atlassian-oauth2-scopes"?: OAuth2Scopes[] | OAuth2ScopesWithState[];
     "x-atlassian-data-security-policy"?: DataSecurityPolicy[];
-    "x-atlassian-auth-type"?: AuthTypes[];
+    "x-atlassian-auth-types"?: AuthTypes[];
   }
   /**
    * This interface was referenced by `SwaggerV3`'s JSON-Schema
