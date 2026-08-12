@@ -3,24 +3,24 @@ declare module 'jsonpointer' {
       /**
        * Looks up a JSON pointer in an object
        */
-      get(object: Object, pointer: string): any; // tslint:disable-line:no-any
+      get(object: object, pointer: string): any;
 
       /**
        * Set a value for a JSON pointer on object
        */
-      set(object: Object, pointer: string, value: any): void; // tslint:disable-line:no-any
+      set(object: object, pointer: string, value: any): void;
   }
 
   namespace JSONPointer {
       /**
        * Looks up a JSON pointer in an object
        */
-      function get(object: Object, pointer: string): any; // tslint:disable-line:no-any
+      function get(object: object, pointer: string): any;
 
       /**
        * Set a value for a JSON pointer on object
        */
-      function set(object: Object, pointer: string, value: any): void; // tslint:disable-line:no-any
+      function set(object: object, pointer: string, value: any): void;
 
       /**
        *  Builds a JSONPointer instance from a pointer value.

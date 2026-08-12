@@ -128,7 +128,6 @@ export namespace SwaggerLookup {
       return this.performLookup<S.SecurityScheme>(ss, TC.isSecurityScheme);
     }
 
-    // tslint:disable-next-line:no-any
     private performLookup<T>(o: T | S.Reference, tCheck: (o: any) => o is T): T | undefined {
       if (!TC.isReference(o)) {
         return o;

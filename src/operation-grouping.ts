@@ -1,5 +1,5 @@
 import { Swagger } from './swagger';
-import * as URI from 'urijs';
+import URI = require('urijs');
 
 export type PathAndOperation = {
     baseUrl: string;
@@ -47,7 +47,7 @@ function getServerUrlWithDefault(swagger: Swagger.SwaggerV3): string {
 
 export function getIdForOperationGroup(grouping: OperationGrouping): string {
     // In the end, only alphanumeric characters should remain
-    return 'api-group-' + grouping.title.replace(/[^A-Za-z\-]/g, '-');
+    return 'api-group-' + grouping.title.replace(/[^A-Za-z-]/g, '-');
 }
 
 function generateId(text: string): string {
@@ -102,16 +102,14 @@ function extractFromPathItem(
 
     const operations = new Array<PathAndOperation>();
 
-    // tslint:disable:no-unused-expression
-    pathItem.get && operations.push(toPO('get', pathItem.get));
-    pathItem.put && operations.push(toPO('put', pathItem.put));
-    pathItem.post && operations.push(toPO('post', pathItem.post));
-    pathItem.delete && operations.push(toPO('delete', pathItem.delete));
-    pathItem.options && operations.push(toPO('options', pathItem.options));
-    pathItem.head && operations.push(toPO('head', pathItem.head));
-    pathItem.patch && operations.push(toPO('patch', pathItem.patch));
-    pathItem.trace && operations.push(toPO('trace', pathItem.trace));
-    // tslint:enable:no-unused-expression
+    if (pathItem.get) { operations.push(toPO('get', pathItem.get)); }
+    if (pathItem.put) { operations.push(toPO('put', pathItem.put)); }
+    if (pathItem.post) { operations.push(toPO('post', pathItem.post)); }
+    if (pathItem.delete) { operations.push(toPO('delete', pathItem.delete)); }
+    if (pathItem.options) { operations.push(toPO('options', pathItem.options)); }
+    if (pathItem.head) { operations.push(toPO('head', pathItem.head)); }
+    if (pathItem.patch) { operations.push(toPO('patch', pathItem.patch)); }
+    if (pathItem.trace) { operations.push(toPO('trace', pathItem.trace)); }
 
     return operations;
 }
@@ -130,8 +128,8 @@ type TagGroupLookup = {
 };
 
 function toTagGroups(tags: Swagger.Tag[], pos: PathAndOperation[]): TagGroups {
-    let lookup: TagGroupLookup = {};
-    let defaultOps: PathAndOperation[] = new Array<PathAndOperation>();
+    const lookup: TagGroupLookup = {};
+    const defaultOps: PathAndOperation[] = new Array<PathAndOperation>();
 
     // For each path and operation
     pos.forEach(op => {
