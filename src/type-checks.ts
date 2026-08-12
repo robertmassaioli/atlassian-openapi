@@ -9,7 +9,6 @@ export namespace SwaggerTypeChecks {
     return 'examples' in t;
   }
 
-  // tslint:disable-next-line:no-any
   function matchesObjectShape<T>(o: any, allKeys: Set<string>, requiredKeys?: string[]): o is T {
     if (typeof o !== 'object' || o === null) {
       return false;
@@ -56,12 +55,10 @@ export namespace SwaggerTypeChecks {
     'allowEmptyValue'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isParameter(p: any): p is S.Parameter {
     return isParameterWithSchema(p) || isParameterWithContent(p);
   }
 
-  // tslint:disable-next-line:no-any
   export function isParameterWithSchema(p: any): p is S.ParameterWithSchema {
     if (typeof p !== 'object' || p === null) {
       return false;
@@ -78,7 +75,6 @@ export namespace SwaggerTypeChecks {
     return keysMatch && requiredKeysPresent;
   }
 
-  // tslint:disable-next-line:no-any
   export function isParameterWithContent(p: any): p is S.ParameterWithContent {
     if (typeof p !== 'object' || p === null) {
       return false;
@@ -95,7 +91,6 @@ export namespace SwaggerTypeChecks {
     return keysMatch && requiredKeysPresent;
   }
 
-  // tslint:disable-next-line:no-any
   export function isReference(s: any): s is S.Reference {
     return typeof s === 'object' && s !== null && '$ref' in s;
   }
@@ -142,7 +137,6 @@ export namespace SwaggerTypeChecks {
     return keys.filter(k => !k.startsWith('x-'));
   }
 
-  // tslint:disable-next-line:no-any
   export function isSchema(s: any): s is S.Schema {
     return matchesObjectShape<S.Schema>(s, schemaStandardKeys);
   }
@@ -157,7 +151,6 @@ export namespace SwaggerTypeChecks {
     'content'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isRequestBody(b: any): b is S.RequestBody {
     return matchesObjectShape<S.RequestBody>(b, requestBodyKeys, requiredRequestBodyKeys);
   }
@@ -169,7 +162,6 @@ export namespace SwaggerTypeChecks {
     'externalValue'
   ]);
 
-  // tslint:disable-next-line:no-any
   export function isExample(e: any): e is S.Example {
     return matchesObjectShape(e, optionalExampleKeys);
   }
@@ -190,12 +182,10 @@ export namespace SwaggerTypeChecks {
     'parameters'
   ]);
 
-  // tslint:disable-next-line:no-any
   export function isPathItem(o: any): o is S.PathItem {
     return matchesObjectShape<S.PathItem>(o, optionalPathItemKeys);
   }
 
-  // tslint:disable-next-line:no-any
   export function isCallback(o: any): o is S.Callback {
     if (typeof o !== 'object' || o === null) {
       return false;
@@ -223,7 +213,6 @@ export namespace SwaggerTypeChecks {
     'schema'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isHeaderWithSchema(o: any): o is S.HeaderWithSchema {
     return matchesObjectShape<S.HeaderWithSchema>(o, headerWithSchemaKeys, headerWithSchemaRequiredKeys);
   }
@@ -240,12 +229,10 @@ export namespace SwaggerTypeChecks {
     'content'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isHeaderWithContent(o: any): o is S.HeaderWithContent {
     return matchesObjectShape<S.HeaderWithContent>(o, headerWithContentKeys, headerWithContentRequiredKeys);
   }
 
-  // tslint:disable-next-line:no-any
   export function isHeader(o: any): o is S.Header {
     return isHeaderWithSchema(o) || isHeaderWithContent(o);
   }
@@ -258,7 +245,6 @@ export namespace SwaggerTypeChecks {
     'server'
   ]);
 
-  // tslint:disable-next-line:no-any
   export function isLinkWithOperationRef(o: any): o is S.LinkWithOperationRef {
     return matchesObjectShape<S.LinkWithOperationRef>(o, optionalLinkWithOperationRefKeys);
   }
@@ -271,12 +257,10 @@ export namespace SwaggerTypeChecks {
     'server'
   ]);
 
-  // tslint:disable-next-line:no-any
   export function isLinkWithOperationId(o: any): o is S.LinkWithOperationId {
     return matchesObjectShape<S.LinkWithOperationId>(o, optionalLinkWithOperationIdKeys);
   }
 
-  // tslint:disable-next-line:no-any
   export function isLink(o: any): o is S.Link {
     return isLinkWithOperationId(o) || isLinkWithOperationRef(o);
   }
@@ -292,7 +276,6 @@ export namespace SwaggerTypeChecks {
     'description'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isResponse(o: any): o is S.Response {
     return matchesObjectShape<S.Response>(o, responseKeys, requiredResponseKeys);
   }
@@ -310,7 +293,6 @@ export namespace SwaggerTypeChecks {
     'in'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isApiKeySecurityScheme(o: any): o is S.ApiKeySecurityScheme {
     return matchesObjectShape<S.SecurityScheme>(o, apiKeySecuritySchemeKeys, apiKeySecuritySchemeRequiredKeys);
   }
@@ -326,7 +308,6 @@ export namespace SwaggerTypeChecks {
     'type'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isNonBearerHTTPSecurityScheme(o: any): o is S.NonBearerHttpSecurityScheme {
     return matchesObjectShape<S.NonBearerHttpSecurityScheme>(
       o,
@@ -347,7 +328,6 @@ export namespace SwaggerTypeChecks {
     'scheme'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isBearerHttpSecurityScheme(o: any): o is S.BearerHttpSecurityScheme {
     return matchesObjectShape<S.BearerHttpSecurityScheme>(
       o,
@@ -367,7 +347,6 @@ export namespace SwaggerTypeChecks {
     'flows'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isOAuth2SecurityScheme(o: any): o is S.OAuth2SecurityScheme {
     return matchesObjectShape<S.OAuth2SecurityScheme>(
       o,
@@ -387,7 +366,6 @@ export namespace SwaggerTypeChecks {
     'openIdConnectUrl'
   ];
 
-  // tslint:disable-next-line:no-any
   export function isOpenIdConnectSecurityScheme(o: any): o is S.OpenIdConnectSecurityScheme {
     return matchesObjectShape<S.OpenIdConnectSecurityScheme>(
       o,
@@ -396,12 +374,10 @@ export namespace SwaggerTypeChecks {
     );
   }
 
-  // tslint:disable-next-line:no-any
   export function isHttpSecurityScheme(o: any): o is S.HttpSecurityScheme {
     return isBearerHttpSecurityScheme(o) || isNonBearerHTTPSecurityScheme(o);
   }
 
-  // tslint:disable-next-line:no-any
   export function isSecurityScheme(o: any): o is S.SecurityScheme {
     return isApiKeySecurityScheme(o)
     || isBearerHttpSecurityScheme(o)
@@ -417,18 +393,15 @@ export namespace SwaggerTypeChecks {
     ) {
     return p.in === 'path';
   }
-  // tslint:disable-next-line:max-line-length
   export function isOAuth2ScopesArray(o: NonNullable<Swagger.Operation['x-atlassian-oauth2-scopes']>): o is Array<Swagger.OAuth2Scopes> {
     return o.every(isOAuth2Scopes);
   }
-  // tslint:disable-next-line:max-line-length
   export function isOAuth2ScopesWithStateArray(o: NonNullable<Swagger.Operation['x-atlassian-oauth2-scopes']>): o is Array<Swagger.OAuth2ScopesWithState> {
     return o.every(isOAuth2ScopesWithState);
   }
   export function isOAuth2Scopes(o: Swagger.OAuth2Scopes | Swagger.OAuth2ScopesWithState): o is Swagger.OAuth2Scopes {
     return 'deprecated' in o;
   }
-  // tslint:disable-next-line:max-line-length
   export function isOAuth2ScopesWithState(o: Swagger.OAuth2Scopes | Swagger.OAuth2ScopesWithState): o is Swagger.OAuth2ScopesWithState {
     return 'state' in o;
   }

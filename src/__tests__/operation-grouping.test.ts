@@ -236,6 +236,22 @@ describe('postman grouping', () => {
 
       expect(radV1GroupingStrategy(actual)).toEqual(expected);
     });
+
+    it('a server url with no scheme at all should default to https so getOpPath does not throw', () => {
+      const actual = pathsToOAS({
+        '/object/action': {
+          get: EMPTY_OPERATION
+        }
+      });
+      actual.servers = [{ url: 'example.com/rest' }];
+
+      const result = radV1GroupingStrategy(actual);
+      const [operation] = result.groups[0].operations;
+
+      expect(operation.baseUrl).toEqual('https://example.com/rest');
+      expect(() => getOpPath(operation)).not.toThrow();
+      expect(getOpPath(operation)).toEqual('GET /rest/object/action');
+    });
   });
 
   describe('urlGroupingStrategy', () => {

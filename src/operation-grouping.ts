@@ -1,5 +1,4 @@
 import { Swagger } from './swagger';
-import * as URI from 'urijs';
 
 export type PathAndOperation = {
     baseUrl: string;
@@ -42,12 +41,22 @@ function getServerUrlWithDefault(swagger: Swagger.SwaggerV3): string {
         return 'https://your-domain.atlassian.net';
     }
 
-    return bestServer.url.startsWith('//') ? `https:${bestServer.url}` : bestServer.url;
+    const url = bestServer.url;
+    if (url.startsWith('//')) {
+        return `https:${url}`;
+    }
+
+    if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(url)) {
+        // No scheme at all (e.g. a bare host/path) - default to https so the URL is always absolute
+        return `https://${url}`;
+    }
+
+    return url;
 }
 
 export function getIdForOperationGroup(grouping: OperationGrouping): string {
     // In the end, only alphanumeric characters should remain
-    return 'api-group-' + grouping.title.replace(/[^A-Za-z\-]/g, '-');
+    return 'api-group-' + grouping.title.replace(/[^A-Za-z-]/g, '-');
 }
 
 function generateId(text: string): string {
@@ -59,7 +68,7 @@ export function getIdForOperation(po: PathAndOperation): string {
 }
 
 export function getOpPath(po: PathAndOperation): string {
-    const pathSegments = new URI(po.baseUrl).segment();
+    const pathSegments = new URL(po.baseUrl).pathname.split('/');
     const basePath = pathSegments.filter(s => s.length > 0).join('/');
     const path = basePath.length > 0 ? `/${basePath}${po.path}` : po.path;
     return `${po.method.toUpperCase()} ${path}`;
@@ -102,16 +111,14 @@ function extractFromPathItem(
 
     const operations = new Array<PathAndOperation>();
 
-    // tslint:disable:no-unused-expression
-    pathItem.get && operations.push(toPO('get', pathItem.get));
-    pathItem.put && operations.push(toPO('put', pathItem.put));
-    pathItem.post && operations.push(toPO('post', pathItem.post));
-    pathItem.delete && operations.push(toPO('delete', pathItem.delete));
-    pathItem.options && operations.push(toPO('options', pathItem.options));
-    pathItem.head && operations.push(toPO('head', pathItem.head));
-    pathItem.patch && operations.push(toPO('patch', pathItem.patch));
-    pathItem.trace && operations.push(toPO('trace', pathItem.trace));
-    // tslint:enable:no-unused-expression
+    if (pathItem.get) { operations.push(toPO('get', pathItem.get)); }
+    if (pathItem.put) { operations.push(toPO('put', pathItem.put)); }
+    if (pathItem.post) { operations.push(toPO('post', pathItem.post)); }
+    if (pathItem.delete) { operations.push(toPO('delete', pathItem.delete)); }
+    if (pathItem.options) { operations.push(toPO('options', pathItem.options)); }
+    if (pathItem.head) { operations.push(toPO('head', pathItem.head)); }
+    if (pathItem.patch) { operations.push(toPO('patch', pathItem.patch)); }
+    if (pathItem.trace) { operations.push(toPO('trace', pathItem.trace)); }
 
     return operations;
 }
@@ -130,8 +137,8 @@ type TagGroupLookup = {
 };
 
 function toTagGroups(tags: Swagger.Tag[], pos: PathAndOperation[]): TagGroups {
-    let lookup: TagGroupLookup = {};
-    let defaultOps: PathAndOperation[] = new Array<PathAndOperation>();
+    const lookup: TagGroupLookup = {};
+    const defaultOps: PathAndOperation[] = new Array<PathAndOperation>();
 
     // For each path and operation
     pos.forEach(op => {

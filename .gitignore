@@ -9,3 +9,6 @@
 
 # Test coverage output
 /coverage
+
+# husky-generated (recreated by `npm run prepare`)
+/.husky/_
