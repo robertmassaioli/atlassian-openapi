@@ -27,13 +27,11 @@
     "prepare": "husky && npm run build"
   },
   "dependencies": {
-    "jsonpointer": "^5.0.1",
-    "urijs": "^1.19.10"
+    "jsonpointer": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
-    "@types/urijs": "^1.19.26",
     "eslint": "^10.8.1",
     "husky": "^9.1.7",
     "jest": "^30.4.2",

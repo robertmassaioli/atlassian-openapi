@@ -1,5 +1,4 @@
 import { Swagger } from './swagger';
-import URI = require('urijs');
 
 export type PathAndOperation = {
     baseUrl: string;
@@ -42,7 +41,17 @@ function getServerUrlWithDefault(swagger: Swagger.SwaggerV3): string {
         return 'https://your-domain.atlassian.net';
     }
 
-    return bestServer.url.startsWith('//') ? `https:${bestServer.url}` : bestServer.url;
+    const url = bestServer.url;
+    if (url.startsWith('//')) {
+        return `https:${url}`;
+    }
+
+    if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(url)) {
+        // No scheme at all (e.g. a bare host/path) - default to https so the URL is always absolute
+        return `https://${url}`;
+    }
+
+    return url;
 }
 
 export function getIdForOperationGroup(grouping: OperationGrouping): string {
@@ -59,7 +68,7 @@ export function getIdForOperation(po: PathAndOperation): string {
 }
 
 export function getOpPath(po: PathAndOperation): string {
-    const pathSegments = new URI(po.baseUrl).segment();
+    const pathSegments = new URL(po.baseUrl).pathname.split('/');
     const basePath = pathSegments.filter(s => s.length > 0).join('/');
     const path = basePath.length > 0 ? `/${basePath}${po.path}` : po.path;
     return `${po.method.toUpperCase()} ${path}`;
