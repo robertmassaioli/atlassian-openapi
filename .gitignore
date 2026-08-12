@@ -6,3 +6,6 @@
 /node_modules
 /lib
 *.tgz
+
+# Test coverage output
+/coverage

@@ -1,4 +1,4 @@
-import { Swagger } from './swagger';
+import { Swagger } from '../swagger';
 
 export function pathsToOAS(paths: Swagger.Paths, tags?: Swagger.Tag[]): Swagger.SwaggerV3 {
   return {
