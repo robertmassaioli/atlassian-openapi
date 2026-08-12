@@ -10,7 +10,7 @@ export namespace SwaggerTypeChecks {
   }
 
   function matchesObjectShape<T>(o: any, allKeys: Set<string>, requiredKeys?: string[]): o is T {
-    if (typeof o !== 'object') {
+    if (typeof o !== 'object' || o === null) {
       return false;
     }
 
@@ -60,7 +60,7 @@ export namespace SwaggerTypeChecks {
   }
 
   export function isParameterWithSchema(p: any): p is S.ParameterWithSchema {
-    if (typeof p !== 'object') {
+    if (typeof p !== 'object' || p === null) {
       return false;
     }
 
@@ -76,7 +76,7 @@ export namespace SwaggerTypeChecks {
   }
 
   export function isParameterWithContent(p: any): p is S.ParameterWithContent {
-    if (typeof p !== 'object') {
+    if (typeof p !== 'object' || p === null) {
       return false;
     }
 
@@ -92,7 +92,7 @@ export namespace SwaggerTypeChecks {
   }
 
   export function isReference(s: any): s is S.Reference {
-    return typeof s === 'object' && '$ref' in s;
+    return typeof s === 'object' && s !== null && '$ref' in s;
   }
 
   const schemaStandardKeys: Set<string> = new Set([
@@ -187,7 +187,7 @@ export namespace SwaggerTypeChecks {
   }
 
   export function isCallback(o: any): o is S.Callback {
-    if (typeof o !== 'object') {
+    if (typeof o !== 'object' || o === null) {
       return false;
     }
 

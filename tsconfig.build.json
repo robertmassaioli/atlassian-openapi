@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "exclude": [
     "./src/stories/**/*",
-    "./src/*.test.ts",
+    "./src/__tests__/**/*",
     "node_modules",
     "build",
     "scripts",

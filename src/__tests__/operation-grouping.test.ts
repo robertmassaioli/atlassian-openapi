@@ -7,8 +7,8 @@ import {
   getIdForOperation,
   getOpPath,
   PathAndOperation
-} from './operation-grouping';
-import { Swagger } from './swagger';
+} from '../operation-grouping';
+import { Swagger } from '../swagger';
 import { pathsToOAS } from './test-functions';
 
 const EMPTY_OPERATION: Swagger.Operation = { responses: {} };
