@@ -18,6 +18,9 @@ module.exports = {
     "src/**/*.ts",
     "!src/__tests__/**",
     "!src/swagger.ts",
+    "!src/swagger-v3-generated.ts",
+    "!src/swagger-v31.ts",
+    "!src/swagger-v31-generated.ts",
     "!src/types.d.ts",
     "!src/index.ts"
   ],
