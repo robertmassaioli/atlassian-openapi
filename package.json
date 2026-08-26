@@ -14,7 +14,8 @@
   "typings": "lib/index",
   "files": [
     "lib/**",
-    "swagger-v3.json"
+    "swagger-v3.json",
+    "swagger-v3.1.json"
   ],
   "engines": {
     "node": ">=22.13.0"
@@ -27,6 +28,7 @@
     "lint": "eslint 'src/**/*.ts*'",
     "build": "tsc --project tsconfig.build.json",
     "generate:swagger-v3-base": "json2ts -i swagger-v3.json -o src/swagger-v3-generated.ts --unreachableDefinitions --style.singleQuote --no-unknownAny",
+    "generate:swagger-v31-base": "json2ts -i swagger-v3.1.json -o src/swagger-v31-generated.ts --unreachableDefinitions --style.singleQuote --no-unknownAny",
     "prepare": "husky && npm run build"
   },
   "dependencies": {
