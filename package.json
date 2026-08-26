@@ -14,7 +14,7 @@
   "typings": "lib/index",
   "files": [
     "lib/**",
-    "swagger.v3.json"
+    "swagger-v3.json"
   ],
   "engines": {
     "node": ">=22.13.0"
@@ -26,6 +26,7 @@
     "coverage:badges": "istanbul-badges-readme",
     "lint": "eslint 'src/**/*.ts*'",
     "build": "tsc --project tsconfig.build.json",
+    "generate:swagger-v3-base": "json2ts -i swagger-v3.json -o src/swagger-v3-generated.ts --unreachableDefinitions --style.singleQuote --no-unknownAny",
     "prepare": "husky && npm run build"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "husky": "^9.1.7",
     "istanbul-badges-readme": "^1.9.0",
     "jest": "^30.4.2",
+    "json-schema-to-typescript": "^15.0.4",
     "ts-jest": "^29.4.12",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",

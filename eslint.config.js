@@ -4,7 +4,10 @@ const tseslint = require('typescript-eslint');
 
 module.exports = tseslint.config(
   {
-    ignores: ['lib/**', 'coverage/**', 'node_modules/**']
+    // swagger-v3-generated.ts is genuine, unedited json-schema-to-typescript
+    // output (see npm run generate:swagger-v3-base) - never hand-edited, so
+    // never hand-linted either.
+    ignores: ['lib/**', 'coverage/**', 'node_modules/**', 'src/swagger-v3-generated.ts']
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
